@@ -16,6 +16,10 @@
 </tr>
 </tbody>
 </table>
+## Sección Invitados:
+- [x] Ver pantalla principal en donde se vea información general del club
+- [x] Ver publicidades y que además tenga un enlace a un portal de noticias del club
+- [x] Filtar Noticias
 
 ## Sección Administradores:
 - [x] Carga de Publicaciones. 
