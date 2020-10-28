@@ -19,7 +19,7 @@
 
 ## Sección reportes:
 - [x] ## Sección reportes:
-- [x]Carga de publicaciones. Las mismas deben poder ser habilitadas o deshabilitadas. Las publicaciones habilitadas son las que se mostrarán en el portal de noticias del sitio
+- [x] Carga de publicaciones. 
 
 
 ## Sección reportes:
