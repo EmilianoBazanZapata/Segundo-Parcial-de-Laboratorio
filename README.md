@@ -23,8 +23,8 @@
 
 ## Sección Administradores:
 - [x] Ver pantalla principal en donde se vea información general del club.
-- [x] ABMC de Actividades.
-- [x] ABMC de Socios.
+- [x] Ver publicidades y que además tenga un enlace a un portal de noticias del club.
+- [x] Filtar Noticias.
 - [x] Registrar el pago de cuotas de los socios
 - [x] Inscripción y desinscripción de socios a actividades
 
