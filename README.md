@@ -18,8 +18,8 @@
 </table>
 
 ## Sección reportes:
-[]	Monto total de ganancias en cuotas
-[]	Nombre y total de ganancias de las 3 actividades con mayor ganancia total.
-[]	Listado de socios inscriptos a una actividad en particular
-[]	Seleccionar un socio y ver un listado de sus cuotas pagas
+-[]	Monto total de ganancias en cuotas
+-[]	Nombre y total de ganancias de las 3 actividades con mayor ganancia total.
+-[]	Listado de socios inscriptos a una actividad en particular
+-[]	Seleccionar un socio y ver un listado de sus cuotas pagas
 
