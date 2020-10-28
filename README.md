@@ -22,6 +22,13 @@
 - [x] Filtar Noticias.
 
 ## Sección Administradores:
+- [x] Ver pantalla principal en donde se vea información general del club.
+- [x] ABMC de Actividades.
+- [x] ABMC de Socios.
+- [x] Registrar el pago de cuotas de los socios
+- [x] Inscripción y desinscripción de socios a actividades
+
+## Sección Administradores:
 - [x] Carga de Publicaciones. 
 - [x] ABMC de Actividades.
 - [x] ABMC de Socios.
