@@ -1,4 +1,4 @@
-# Segundo-Parcial-de-Laboratorio
+# Segundo Parcial de Laboratorio
 
 <table>
 <thead>
