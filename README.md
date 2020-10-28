@@ -18,11 +18,11 @@
 </table>
 
 ## Sección reportes:
-- [x] ## Sección reportes:
 - [x] Carga de Publicaciones. 
 - [x] ABMC de Actividades.
 - [x] ABMC de Socios.
 - [x] Registrar el pago de cuotas de los socios
+- [x] Inscripción y desinscripción de socios a actividades
 
 
 ## Sección reportes:
