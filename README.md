@@ -17,7 +17,7 @@
 </tbody>
 </table>
 
-## Capturas de Trello :clipboard:
+## Sección reportes:
 - [x] Monto total de ganancias en cuotas
 - [x] Nombre y total de ganancias de las 3 actividades con mayor ganancia total.
 - [x] Listado de socios inscriptos a una actividad en particular
