@@ -19,7 +19,10 @@
 
 ## Sección reportes:
 - [x] ## Sección reportes:
-- [x] Carga de publicaciones. 
+- [x] Carga de Publicaciones. 
+- [x] ABMC de Actividades.
+- [x] ABMC de Socios.
+- [x] Registrar el pago de cuotas de los socios
 
 
 ## Sección reportes:
