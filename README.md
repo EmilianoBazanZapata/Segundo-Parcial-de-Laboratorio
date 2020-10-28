@@ -17,7 +17,7 @@
 </tbody>
 </table>
 
-## Sección reportes:
+## Sección Administradores:
 - [x] Carga de Publicaciones. 
 - [x] ABMC de Actividades.
 - [x] ABMC de Socios.
