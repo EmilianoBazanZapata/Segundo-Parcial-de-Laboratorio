@@ -170,7 +170,7 @@ public class GestorNoticia {
             PreparedStatement st = con.prepareStatement(Consulta);
 
             st.setInt(1, id);
-
+            System.out.println(id);
             st.execute();
 
             resultado = true;

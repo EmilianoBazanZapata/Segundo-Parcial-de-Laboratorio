@@ -4,6 +4,7 @@ public class Actividad_x_Socio {
 
     private int Id_Actividad;
     private int Id_Socio;
+    private boolean activo;
     private Socio socio;
     private Actividad actividad;
 
@@ -21,6 +22,14 @@ public class Actividad_x_Socio {
 
     public void setId_Socio(int Id_Socio) {
         this.Id_Socio = Id_Socio;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public Socio getSocio() {
@@ -42,16 +51,17 @@ public class Actividad_x_Socio {
     public Actividad_x_Socio() {
     }
 
-    public Actividad_x_Socio(int Id_Actividad, int Id_Socio, Socio socio, Actividad actividad) {
+    public Actividad_x_Socio(int Id_Actividad, int Id_Socio, boolean activo, Socio socio, Actividad actividad) {
         this.Id_Actividad = Id_Actividad;
         this.Id_Socio = Id_Socio;
+        this.activo = activo;
         this.socio = socio;
         this.actividad = actividad;
     }
 
     @Override
     public String toString() {
-        return "Actividad_x_Socio{" + "Id_Actividad=" + Id_Actividad + ", Id_Socio=" + Id_Socio + ", socio=" + socio + ", actividad=" + actividad + '}';
+        return "Actividad_x_Socio{" + "Id_Actividad=" + Id_Actividad + ", Id_Socio=" + Id_Socio + ", activo=" + activo + ", socio=" + socio + ", actividad=" + actividad + '}';
     }
 
 }

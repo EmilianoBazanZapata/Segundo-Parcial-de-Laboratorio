@@ -6,7 +6,11 @@
 package Servlets.Actividades;
 
 import Clases.Actividad;
+import Clases.DTOTotalGanado;
+import Clases.Socio;
 import Gestor.GestorActividad;
+import Gestor.GestorFactura;
+import Gestor.GestorSocio;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -25,56 +29,34 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ListadoDeActividades", urlPatterns = {"/ListadoDeActividades"})
 public class ListadoDeActividades extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        GestorActividad g = new GestorActividad();
-        
-        ArrayList<Actividad> lista = g.ObtenerActividades();
-        request.setAttribute("listadeactividades", lista);    
-        
-        
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoDeActividades.jsp");
-        rd.forward(request, response);
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String modo = request.getParameter("modo");
+         boolean permitido = (boolean) request.getSession().getAttribute("usr");
+        if (modo == null || modo.isEmpty()) {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
+            rd.forward(request, response);
+        }
+        else if (modo.equals("veractividades")&& permitido) {
+            GestorActividad g = new GestorActividad();
+
+            ArrayList<Actividad> lista = g.ObtenerActividades();
+            request.setAttribute("listadeactividades", lista);
+
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoDeActividades.jsp");
+            rd.forward(request, response);
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

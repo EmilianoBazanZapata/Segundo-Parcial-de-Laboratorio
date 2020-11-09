@@ -91,7 +91,7 @@ public class GestorReporte {
 
             ResultSet rt = st.executeQuery();
 
-            if (rt.next()) {
+            while (rt.next()) {
 
                 String actividad = rt.getString("Actividad");
                 String nombre = rt.getString("Nombre");
@@ -105,8 +105,10 @@ public class GestorReporte {
                 
                 Actividad ac = new Actividad();
                 ac.setActividad(actividad);
+                
+                boolean activo = true;
 
-                Actividad_x_Socio a = new Actividad_x_Socio(0,0,s,ac);
+                Actividad_x_Socio a = new Actividad_x_Socio(0,0,activo,s,ac);
 
                 lista.add(a);
             }

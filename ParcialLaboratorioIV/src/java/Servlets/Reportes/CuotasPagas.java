@@ -36,15 +36,18 @@ public class CuotasPagas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        GestorFactura g = new GestorFactura();
-        ArrayList<DTOPagosDeUnSocio> lista = g.CuotasPagas(id);
-        
-        request.setAttribute("listadeCuotasPagas", lista);    
-        
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoCuotasPagas.jsp");
-        rd.forward(request, response);
-        
+        boolean permitido = (boolean) request.getSession().getAttribute("usr");
+        if (permitido) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            GestorFactura g = new GestorFactura();
+            ArrayList<DTOPagosDeUnSocio> lista = g.CuotasPagas(id);
+
+            request.setAttribute("listadeCuotasPagas", lista);
+
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoCuotasPagas.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
     /**

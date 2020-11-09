@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Emiliano/Documents/NetBeansProjects/ParcialLaboratorioIV/web/ListadoDeSocios.jsp</file>
-            <file>file:/C:/Users/Emiliano/Documents/NetBeansProjects/ParcialLaboratorioIV/web/index.html</file>
-            <file>file:/C:/Users/Emiliano/Documents/NetBeansProjects/ParcialLaboratorioIV/src/java/Gestor/GestorAdministrador.java</file>
-            <file>file:/C:/Users/Emiliano/Documents/NetBeansProjects/ParcialLaboratorioIV/src/java/Gestor/GestorSocio.java</file>
+            <file>file:/C:/Users/Emiliano/Documents/NetBeansProjects/ParcialLaboratorioIV/src/java/Servlets/Socios/ABMCSocio.java</file>
+            <file>file:/C:/Users/Emiliano/Documents/NetBeansProjects/ParcialLaboratorioIV/src/java/Servlets/Administrador/VerificarAdministrador.java</file>
         </group>
     </open-files>
 </project-private>

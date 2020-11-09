@@ -14,25 +14,33 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div>
-            <table class="table table-bordered table-responsive table-responsive-xl">
-                <tr>
-                    <td class="text-center">                     
-                        <form method="post" action="AgregarActividadAunSocio?id=${IdSocio}">
-                                <select name="cboActividades">
-                                    <c:forEach items="${Actividades}" var="p">
-                                        <option value="${p.getId_actividad()}">${p.getActividad()}
-                                        </c:forEach>  
-                                </select>
-                            <tr>
-                                <td> 
-                                    <button type="submit" class="btn btn-primary">Agregar</button>
-                                </td>
-                            </tr>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <c:choose>
+            <c:when test="${usr}">
+
+                <div>
+                    <table class="table table-bordered table-responsive table-responsive-xl">
+                        <tr>
+                            <td class="text-center">      
+                                <form method="post" action="ABMSocio?modo=agregaractividad&id=${IdSocio}">
+                                    <select name="cboActividades">
+                                        <c:forEach items="${Actividades}" var="p">
+                                            <option value="${p.getId_actividad()}">${p.getActividad()}
+                                            </c:forEach>  
+                                    </select>
+                                    <tr>
+                                        <td> 
+                                            <button type="submit" class="btn btn-primary">Agregar Actividad</button>
+                                        </td>
+                                    </tr>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <%@include file="infoError.jsp" %>
+            </c:otherwise>
+        </c:choose>
     </body>
 </html>

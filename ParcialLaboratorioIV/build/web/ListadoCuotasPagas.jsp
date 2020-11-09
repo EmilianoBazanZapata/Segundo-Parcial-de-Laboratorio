@@ -14,45 +14,26 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Pagina Inicial</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="InicioParaAdministradores.jsp">Inicio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="ListadoDeSocios">Lista de Socios<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="ListadoDeActividades">Lista de Actividades<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="ListadoNoticia">Noticias<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="ActividadesConMasGanancias">Reportes<span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+    <%@include file="Menues/MenuGeneral.jsp" %>
     <body> 
-        <table class="table table-bordered" >
-            <tr class="text-primary thead-dark">
-                <th class="text-center">FECHA DE PAGO</th>
-                <th class="text-center">MONTO TOTAL PAGADO</th>
-            </tr>
-            <c:forEach items="${listadeCuotasPagas}" var="s">
-                <tr>
-                    <th class="text-center">${s.fecha}</th>
-                    <th class="text-center">${s.total}</th>
-                </tr>
-            </c:forEach>       
-        </table>
+        <c:choose>
+            <c:when test="${usr}">
+                <table class="table table-bordered" >
+                    <tr class="text-primary thead-dark">
+                        <th class="text-center">FECHA DE PAGO</th>
+                        <th class="text-center">MONTO TOTAL PAGADO</th>
+                    </tr>
+                    <c:forEach items="${listadeCuotasPagas}" var="s">
+                        <tr>
+                            <th class="text-center">${s.fecha}</th>
+                            <th class="text-center">${s.total}</th>
+                        </tr>
+                    </c:forEach>       
+                </table>
+            </c:when>
+            <c:otherwise>
+                <%@include file="infoError.jsp" %>
+            </c:otherwise>
+        </c:choose>
     </body>
 </html>

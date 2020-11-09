@@ -12,47 +12,41 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Pagina Inicial</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="InicioParaAdministradores.jsp">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="ListadoDeSocios">Lista de Socios<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="ListadoDeActividades">Lista de Actividades<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="ListadoNoticia">Noticias<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="ActividadesConMasGanancias">Reportes<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="ActividadesConMasGanancias">Reportes<span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="container" >
-            <table class="table table-bordered" >
-                <c:forEach items="${listadeNoticiasBuscadas}" var="s">
-                    <div class="jumbotron">
-                        <h1 class="display-4">${s.titulo}</h1>
-                        <p class="lead">${s.noticia}</p>
-                        <hr class="my-4">
-                        <p></p>
-                        <a class="btn btn-danger btn-lg" href="EliminarNoticia?id=${s.id_noticia}" role="button">Eliminar</a>
-                    </div>
-                </c:forEach>       
-            </table>
-        </div>
+        <c:choose>
+            <c:when test="${usr}">
+                <%@include file="Menues/MenuGeneral.jsp" %>
+                <div class="container" >
+                    <table class="table table-bordered" >
+                        <c:forEach items="${listadeNoticiasBuscadas}" var="s">
+                            <c:if test="${s.activo}">
+                                <div class="jumbotron">
+                                    <h1 class="display-4">${s.titulo}</h1>
+                                    <p class="lead">${s.noticia}</p>
+                                    <hr class="my-4">
+                                    <p></p>
+                                    <a class="btn btn-primary btn-lg" href="ABMNoticia?modo=buscar&id=${s.actividad.getId_actividad()}" role="button">Buscar Solo Noticias de ${s.actividad.getActividad()}</a>
+
+                                    <a class="btn btn-danger btn-lg" href="ABMNoticia?modo=eliminar&id=${s.id_noticia}" role="button">Eliminar</a>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${!s.activo}">
+                                <div class="jumbotron">
+                                    <h1 class="display-4">${s.titulo}</h1>
+                                    <p class="lead">${s.noticia}</p>
+                                    <hr class="my-4">
+                                    <p></p>
+                                    <a class="btn btn-success btn-lg" href="ABMNoticia?modo=habilitar&id=${s.id_noticia}" role="button">Habilitar</a>
+                                </div>
+                            </c:if>
+                        </c:forEach>       
+                    </table>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <%@include file="infoError.jsp" %>
+            </c:otherwise>
+        </c:choose>
     </body>
 </html>

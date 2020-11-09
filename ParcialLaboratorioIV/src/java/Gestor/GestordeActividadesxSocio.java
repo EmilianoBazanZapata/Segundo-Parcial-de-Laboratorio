@@ -71,6 +71,7 @@ public class GestordeActividadesxSocio {
                 String nombre = rt.getString("Nombre");
                 String apellido = rt.getString("Apellido");
                 int dni = rt.getInt("DNI");
+                boolean activo = rt.getBoolean("Activo");
 
                 Actividad a = new Actividad();
                 a.setActividad(actividad);
@@ -80,7 +81,7 @@ public class GestordeActividadesxSocio {
                 s.setApellido(apellido);
                 s.setDni(dni);
 
-                Actividad_x_Socio ac = new Actividad_x_Socio(idActividad, idSocio, s, a);
+                Actividad_x_Socio ac = new Actividad_x_Socio(idActividad, idSocio, activo, s, a);
 
                 lista.add(ac);
             }
@@ -94,12 +95,35 @@ public class GestordeActividadesxSocio {
         return lista;
     }
 
-    public boolean DardeBajaActividaddeUnSocio(int id,int idActividad) {
+    public boolean DardeBajaActividaddeUnSocio(int id, int idActividad) {
         boolean resultado = false;
         try {
             AbrirConexion();
 
             String Consulta = "EXEC UP_DESCATICVAR_ACTIVIDAD_X_SOCIO ? , ?";
+
+            PreparedStatement st = con.prepareStatement(Consulta);
+
+            st.setInt(1, id);
+            st.setInt(2, idActividad);
+
+            st.execute();
+
+            resultado = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            CerrarConexion();
+        }
+        return resultado;
+    }
+
+    public boolean ReactivarActividaddeUnSocio(int id, int idActividad) {
+        boolean resultado = false;
+        try {
+            AbrirConexion();
+
+            String Consulta = "EXEC UP_REATICVAR_ACTIVIDAD_X_SOCIO ? , ?";
 
             PreparedStatement st = con.prepareStatement(Consulta);
 

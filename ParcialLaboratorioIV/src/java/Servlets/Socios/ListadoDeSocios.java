@@ -28,47 +28,34 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ListadoDeSocios", urlPatterns = {"/ListadoDeSocios"})
 public class ListadoDeSocios extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//
-//        GestorSocio g = new GestorSocio();
-//
-//        ArrayList<Socio> lista = g.ObtenerSociosActivos();
-//        request.setAttribute("listadeSocios", lista);
-//
-//        GestorFactura gf = new GestorFactura();
-//        ArrayList<DTOTotalGanado> monto = gf.TotalGanado();
-//        request.setAttribute("monto", monto);
-//
-//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoDeSocios.jsp");
-//        rd.forward(request, response);
-//    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try {
+        String modo = request.getParameter("modo");
+        if (modo == null || modo.isEmpty()) {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
             rd.forward(request, response);
+        } else if (modo.equals("versocios")) {
 
-        } catch (Exception e) {
+            GestorSocio g = new GestorSocio();
+
+            ArrayList<Socio> lista = g.ObtenerSociosActivos();
+            request.setAttribute("listadeSocios", lista);
+            GestorFactura gf = new GestorFactura();
+            ArrayList<DTOTotalGanado> monto = gf.TotalGanado();
+            request.setAttribute("monto", monto);
+
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoDeSocios.jsp");
+            rd.forward(request, response);
 
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+
 
         GestorSocio g = new GestorSocio();
 
@@ -77,6 +64,7 @@ public class ListadoDeSocios extends HttpServlet {
 
         GestorFactura gf = new GestorFactura();
         ArrayList<DTOTotalGanado> monto = gf.TotalGanado();
+
         request.setAttribute("monto", monto);
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoDeSocios.jsp");

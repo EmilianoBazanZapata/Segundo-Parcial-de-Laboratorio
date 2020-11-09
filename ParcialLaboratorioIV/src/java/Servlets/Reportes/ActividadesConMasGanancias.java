@@ -30,19 +30,21 @@ public class ActividadesConMasGanancias extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String modo = request.getParameter("modo");
+        boolean permitido = (boolean) request.getSession().getAttribute("usr");
+        if (modo.equals("reporte") && permitido) {
+            GestorReporte g = new GestorReporte();
+            ArrayList<DTOActividadesConMasGanancias> lista = g.ObtenerActividadesConMasGanancias();
 
-        GestorReporte g = new GestorReporte();
-        ArrayList<DTOActividadesConMasGanancias> lista = g.ObtenerActividadesConMasGanancias();
+            request.setAttribute("ActividadesConMasGanancias", lista);
 
-        request.setAttribute("ActividadesConMasGanancias", lista);
+            GestorFactura gf = new GestorFactura();
+            ArrayList<DTOTotalGanado> monto = gf.TotalGanado();
+            request.setAttribute("monto", monto);
 
-        GestorFactura gf = new GestorFactura();
-        ArrayList<DTOTotalGanado> monto = gf.TotalGanado();
-        request.setAttribute("monto", monto);
-
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Reportes.jsp");
-        rd.forward(request, response);
-
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Reportes.jsp");
+            rd.forward(request, response);
+        }
     }
 
     @Override

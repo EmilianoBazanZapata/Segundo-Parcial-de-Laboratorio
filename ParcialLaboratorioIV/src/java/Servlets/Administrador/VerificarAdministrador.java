@@ -16,12 +16,15 @@ public class VerificarAdministrador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
+        rd.forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String usuario = request.getParameter("txtUsuario");
 
         //por alguna razon colocaba otro nombre y no detectaba el parametro que recibia 
@@ -30,12 +33,15 @@ public class VerificarAdministrador extends HttpServlet {
         GestorAdministrador g = new GestorAdministrador();
 
         boolean verificado = g.VerificarUsuario(usuario, contraseña);
+        boolean permitido;
         if (verificado) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoDeSocios");
+            permitido = true;
+            request.getSession().setAttribute("usr", permitido);
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/ListadoDeSocios?modo=versocios");
             rd.forward(request, response);
-        }
-        else
-        {
+        } else {
+            permitido = false;
+            request.getSession().setAttribute("usr", permitido);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
             rd.forward(request, response);
         }

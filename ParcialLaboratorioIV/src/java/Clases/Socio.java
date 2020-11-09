@@ -6,6 +6,7 @@ public class Socio {
     private String nombre;
     private String apellido;
     private int dni;
+    private boolean activo;
 
     public int getId_socio() {
         return id_socio;
@@ -39,18 +40,28 @@ public class Socio {
         this.dni = dni;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     public Socio() {
     }
 
-    public Socio(int id_socio, String nombre, String apellido, int dni) {
+    public Socio(int id_socio, String nombre, String apellido, int dni, boolean activo) {
         this.id_socio = id_socio;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
+        this.activo = activo;
     }
 
     @Override
     public String toString() {
-        return "id_socio :" + id_socio + " nombre : " + nombre + " apellido : " + apellido + " dni : " + dni;
+        return "Socio{" + "id_socio=" + id_socio + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", activo=" + activo + '}';
     }
+
 }

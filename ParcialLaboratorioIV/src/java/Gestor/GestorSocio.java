@@ -66,8 +66,9 @@ public class GestorSocio {
                 String nombre = rt.getString("Nombre");
                 String apellido = rt.getString("Apellido");
                 int dni = rt.getInt("DNI");
+                boolean activo = rt.getBoolean("Activo");
 
-                Socio s = new Socio(id, nombre, apellido, dni);
+                Socio s = new Socio(id, nombre, apellido, dni, activo);
 
                 lista.add(s);
             }
@@ -92,7 +93,7 @@ public class GestorSocio {
 
             st.setString(1, s.getNombre());
             st.setString(2, s.getApellido());
-            st.setFloat(3, s.getDni());
+            st.setInt(3, s.getDni());
 
             st.execute();
 
@@ -112,9 +113,9 @@ public class GestorSocio {
 
             String Consulta = "EXEC UP_CONSULTAR_SOCIO_EN_PARTICULAR ?";
             PreparedStatement st = con.prepareStatement(Consulta);
-            
+
             st.setInt(1, Id);
-            
+
             ResultSet rt = st.executeQuery();
 
             if (rt.next()) {
@@ -123,8 +124,9 @@ public class GestorSocio {
                 String nombre = rt.getString("Nombre");
                 String apellido = rt.getString("Apellido");
                 int dni = rt.getInt("DNI");
+                boolean activo = true;
 
-                Socio s = new Socio(id, nombre, apellido, dni);
+                Socio s = new Socio(id, nombre, apellido, dni, activo);
 
                 lista.add(s);
             }
@@ -137,6 +139,7 @@ public class GestorSocio {
         }
         return lista;
     }
+
     public boolean ActualizarSocio(Socio s) {
         boolean resultado = false;
         try {
@@ -149,7 +152,7 @@ public class GestorSocio {
             st.setInt(1, s.getId_socio());
             st.setString(2, s.getNombre());
             st.setString(3, s.getApellido());
-            st.setFloat(4, s.getDni());
+            st.setInt(4, s.getDni());
 
             st.execute();
 
@@ -161,7 +164,8 @@ public class GestorSocio {
         }
         return resultado;
     }
-     public boolean DardeBajaSocio(int id) {
+
+    public boolean DardeBajaSocio(int id) {
         boolean resultado = false;
         try {
             AbrirConexion();
@@ -170,7 +174,7 @@ public class GestorSocio {
 
             PreparedStatement st = con.prepareStatement(Consulta);
 
-            st.setInt(1,id);
+            st.setInt(1, id);
 
             st.execute();
 
@@ -182,16 +186,39 @@ public class GestorSocio {
         }
         return resultado;
     }
-     public ArrayList<Socio> ObtenerSocioPorDni(int documento) {
+
+    public boolean ReactivarSocio(int id) {
+        boolean resultado = false;
+        try {
+            AbrirConexion();
+
+            String Consulta = "EXEC UP_REACTIVAR_DE_SOCIO ?";
+
+            PreparedStatement st = con.prepareStatement(Consulta);
+
+            st.setInt(1, id);
+
+            st.execute();
+
+            resultado = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            CerrarConexion();
+        }
+        return resultado;
+    }
+
+    public ArrayList<Socio> ObtenerSocioPorDni(int documento) {
         ArrayList<Socio> lista = new ArrayList<Socio>();
         try {
             AbrirConexion();
 
             String Consulta = "EXEC UP_CONSULTAR_SOCIO_EN_PARTICULAR_POR_DNI ?";
             PreparedStatement st = con.prepareStatement(Consulta);
-            
+
             st.setInt(1, documento);
-            
+
             ResultSet rt = st.executeQuery();
 
             if (rt.next()) {
@@ -200,8 +227,9 @@ public class GestorSocio {
                 String nombre = rt.getString("Nombre");
                 String apellido = rt.getString("Apellido");
                 int dni = rt.getInt("DNI");
+                boolean activo = true;
 
-                Socio s = new Socio(id, nombre, apellido, dni);
+                Socio s = new Socio(id, nombre, apellido, dni, activo);
 
                 lista.add(s);
             }
